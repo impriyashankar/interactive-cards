@@ -21,8 +21,8 @@ body{
   background: url('images/bg-card-front.png') ;
   position:absolute;
   top: 18%;
-    left: 30%;
-    background-size: contain;
+    left: 48%;
+    background-size: cover;
   background-repeat: no-repeat;
 
 
@@ -32,13 +32,69 @@ body{
 
 .card-back{
   background: url('images/bg-card-back.png');
-  background-size: contain;
+  background-size: cover;
   position:absolute;
   bottom: 18%;
-  left: 50%;
-  background-size: contain;
+  left: 65%;
+  background-size: cover;
   background-repeat: no-repeat;
 
+}
+
+.card-front .container{
+  position:relative;
+  height:inherit;
+  width: inherit;
+  padding-top: 20px;
+}
+
+.card-front .card-logo, .card-front .card-number, .card-front .card-other-info{
+  position:absolute;
+}
+
+.card-front .card-logo, .completed-state-logo{
+width:100px;
+height:100px;
+}
+
+.card-front .card-number{
+  top: 54%;
+  left: 4%;
+  font-size: 1.3em;
+  color: #fff;
+}
+
+.card-front .card-other-info{
+  position: absolute;
+  display: flex;
+  width:inherit;
+  justify-content: space-around;
+  left: 4%;
+  top: 77%;
+  color: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
+    padding: 0px 30px 0 0;
+}
+
+.card-front .cardholder-name{
+  /* margin-right: 130px; */
+  flex-grow:1;
+
+}
+
+.card-logo{
+  background:url('images/card-logo.svg') no-repeat;
+}
+.completed-state-logo{
+  background:url('images/icon-complete.svg') no-repeat;
+}
+
+.card-cvv{
+  position:relative;
+  top:43%;
+  left:73%;
+  width:40px;
 }
 
 .container.main{
@@ -59,6 +115,7 @@ input, button{
 
 input{
   border:1px solid hsl(270, 3%, 87%);
+  padding-left:10px;
 }
 
 input#name, input#number, button{
@@ -66,10 +123,11 @@ input#name, input#number, button{
   height:40px;
 
 }
-.form-container{
+.form-container, #card-info-form{
   display:flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 .form-container form>div:not(.exp-date-cvv),.cvv{
   display:flex;
@@ -96,10 +154,12 @@ label{
   display:flex;
   justify-content: space-around;
   margin-bottom: 40px;
+  width:100%;
 }
 
 .exp-date{
   margin-right:auto;
+
 }
 button{
   background-color: hsl(278, 68%, 11%);
@@ -110,4 +170,90 @@ button{
 
 ::placeholder{
   color: hsl(270, 3%, 87%);
+}
+
+p.error{
+  color:hsl(0, 100%, 66%);
+  font-size:12px;
+  margin:0;
+}
+.date-and-cvv{
+  position:relative;
+}
+.exp-date span{
+  position:absolute;
+  left:0;
+  top:150px;
+}
+
+.hide{
+  display:none;
+}
+
+.card-number p{
+
+}
+
+.form-container input:focus{
+  /* border-color: hsl(278, 68%, 11%) !important; */
+  /* border-color:linear-gradient(hsl(249, 99%, 64%), hsl(278, 94%, 30%)); */
+  border-image:
+    linear-gradient(
+      to right, hsl(249, 99%, 64%) 0%, hsl(278, 94%, 30%) 100%
+    );
+    border: 1px solid;
+  /* box-shadow: 0 0 8px rgba(0, 0, 0, 0.6); */
+  outline:0 none;
+}
+
+.completed-state{
+  display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    flex-direction: column;
+}
+
+.completed-state h3{
+  color:hsl(278, 68%, 11%);
+  letter-spacing:2px;
+}
+.completed-state p{
+  color: hsl(270, 3%, 87%);
+  font-size:14px;
+  margin:10px 0 50px;
+}
+
+@media(max-width:475px){
+  .container.main{
+    flex-direction:column;
+  }
+
+  .bg-container{
+    height:40%;
+    width:auto;
+  }
+
+  .card-front, .card-back{
+    position:absolute;
+  }
+
+  .card{
+    width:300px;
+    height:150px;
+  }
+  .card-back{
+    top: 12%;
+    left: 16%;
+  }
+
+  .card-front{
+    z-index: 100;
+    top: 47%;
+    left: 7%;
+  }
+
+  .form-container {
+    padding-top:30px;
+  }
+
 }
