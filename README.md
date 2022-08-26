@@ -7,7 +7,7 @@ The page aims to simulate most features of interaction with a normal credit card
 
 - [Overview](#overview)
   - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
+  - [Screenshots](#screenshots)
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
@@ -29,7 +29,7 @@ Users should be able to:
 - View the 'Thank you' page on successful submission of form details.
 - Reset the form at the end of form interaction workflow.
 
-### Screenshot
+### Screenshots
 
 ![Screenshot 2022-08-26 at 1 11 35 PM](https://user-images.githubusercontent.com/20161096/186892275-e3ab5a13-f13c-45a4-bdd2-c36bf6aec2f8.png)
 ![Screenshot 2022-08-26 at 1 13 00 PM](https://user-images.githubusercontent.com/20161096/186892294-1dfc958f-e2df-4844-a79b-706b52cf5558.png)
