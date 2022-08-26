@@ -26,23 +26,21 @@ let i = 0, j = 0;
 
 const checkInputs = (inputs) => {
   inputs.forEach((input) => {
+    let errorBox = input.closest('div').querySelector('.blank');
     if (input.value === "") {
-      // input.nextElementSibling.classList.remove('hide');
-      input.nextElementSibling.style.display = 'block';
-      input.nextElementSibling.innerText = "Can't be blank";
+      errorBox.style.display = 'block';
+      errorBox.innerText = "Can't be blank";
       input.style.borderColor = "hsl(0, 100%, 66%)";
       i++;
     }
 
     else if (input.value !== 0){
-      input.nextElementSibling.style.display = 'none';
-      input.nextElementSibling.innerText = "";
+      errorBox.style.display = 'none';
+      errorBox.innerText = "";
       input.style.borderColor = "";
       if(input.classList.contains('num-field')) {
           checkLength(input);
-          if (i === 0) {
-            checkFormats(input);
-          }
+          console.log(i);
         }
     }
   }
@@ -53,7 +51,7 @@ const checkLength = (input) => {
   const len = input.value.length;
   let expectedLen = 0;
   if (input.id === 'number') {
-    expectedLen = 19;
+    expectedLen = 16;
     if (len !== expectedLen) {
       document.querySelectorAll('.badlength')[0].style.display = 'block';
       document.querySelectorAll('.badlength')[0].innerText = 'Input too short..';
@@ -64,12 +62,12 @@ const checkLength = (input) => {
       document.querySelectorAll('.badlength')[0].style.display = 'none';
       document.querySelectorAll('.badlength')[0].innerText = '';
       input.style.borderColor = "";
+      checkFormats(input);
     }
   }
   else if (input.id === 'exp-date-month' || input.id === 'exp-date-year') {
     expectedLen = 2;
     if (len !== expectedLen) {
-      // document.querySelectorAll('.badlength')[1].classList.remove('hide');
       document.querySelectorAll('.badlength')[1].style.display = 'block';
       document.querySelectorAll('.badlength')[1].innerText = 'Input too short..';
       input.style.borderColor = "hsl(0, 100%, 66%)";
@@ -79,6 +77,7 @@ const checkLength = (input) => {
       document.querySelectorAll('.badlength')[1].style.display = 'none';
       document.querySelectorAll('.badlength')[1].innerText = '';
       input.style.borderColor = "";
+      checkFormats(input);
     }
   }
   else {
@@ -93,27 +92,30 @@ const checkLength = (input) => {
       document.querySelectorAll('.badlength')[2].style.display = 'none';
       document.querySelectorAll('.badlength')[2].innerText = '';
       input.style.borderColor = "";
+      checkFormats(input);
     }
   }
 }
 
 const checkFormats = (input) => {
+  console.log("enter format check");
   let regex = /^$/;
+  let errorBox = input.closest('div').querySelector('.badformat');
   if (input.value.length > 3) {
-    regex = /^\d{4}\s\d{4}\s\d{4}\s\d{4}$/;
+    regex = /^\d{16}$/;
   }
   else {
     regex = /^\d+$/;
   }
 
   if (!regex.test(input.value)) {
-    input.nextElementSibling.style.display = 'block';
-    input.nextElementSibling.innerText = "Can't be blank";
+    errorBox.style.display = 'block';
+    errorBox.innerText = "Incorrect format, only numbers";
     input.style.borderColor = "hsl(0, 100%, 66%)";
     i++;
   }
   else{
-    input.nextElementSibling.style.display = 'none';
+    errorBox.style.display = 'none';
     input.style.borderColor = "none";
   }
 
@@ -129,7 +131,8 @@ cardholderName.addEventListener('keyup', () => {
 });
 
 cardNumber.addEventListener('keyup', () => {
-  numOnCardImg.innerText = cardNumber.value;
+  const cnum = cardNumber.value;
+  numOnCardImg.innerText = cnum.toString().match(/.{1,4}/g).join(' ');//To create space between every 4 digits of the card number
 });
 
 cardExpMonth.addEventListener('keyup', () => {
@@ -153,20 +156,9 @@ formUser.addEventListener('submit', (event) => {
   }
   else {
     i = 0;
-
-    // const errorTags = document.querySelectorAll('.error');
-    // for (const errorTag of errorTags) {
-    //   errorTag.classList.add('hide');
-    // }
-
-    // for (const inputBox of allInputs) {
-    //   inputBox.style.borderColor = "hsl(278, 68%, 11%)";
-    // }
   }
 });
 
 document.querySelector('#continue').addEventListener('click', () => {
-  // formHolder.classList.remove('hide');
-  // thankyouDisplay.classList.add('hide');
   window.location.reload();
 });
