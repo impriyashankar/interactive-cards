@@ -27,24 +27,26 @@ let i = 0, j = 0;
 const checkInputs = (inputs) => {
   inputs.forEach((input) => {
     if (input.value === "") {
-      input.nextElementSibling.classList.remove('hide');
-      // document.querySelectorAll('.error.blank')[1].classList.remove('hide');
-
+      // input.nextElementSibling.classList.remove('hide');
+      input.nextElementSibling.style.display = 'block';
+      input.nextElementSibling.innerText = "Can't be blank";
+      input.style.borderColor = "hsl(0, 100%, 66%)";
       i++;
-      if(i > 0) {
-        input.style.borderColor = "hsl(0, 100%, 66%)";
-      }
-      else
-      input.style.borderColor = "";
     }
-    else if (input.classList.contains('num-field')) {
-      checkLength(input);
-      if (i === 0) {
-        checkFormats(input);
-      }
+
+    else if (input.value !== 0){
+      input.nextElementSibling.style.display = 'none';
+      input.nextElementSibling.innerText = "";
+      input.style.borderColor = "";
+      if(input.classList.contains('num-field')) {
+          checkLength(input);
+          if (i === 0) {
+            checkFormats(input);
+          }
+        }
     }
   }
-  );
+);
 }
 
 const checkLength = (input) => {
@@ -53,25 +55,44 @@ const checkLength = (input) => {
   if (input.id === 'number') {
     expectedLen = 19;
     if (len !== expectedLen) {
-      document.querySelectorAll('.badlength')[0].classList.remove('hide');
+      document.querySelectorAll('.badlength')[0].style.display = 'block';
+      document.querySelectorAll('.badlength')[0].innerText = 'Input too short..';
       input.style.borderColor = "hsl(0, 100%, 66%)";
       i++;
+    }
+    else{
+      document.querySelectorAll('.badlength')[0].style.display = 'none';
+      document.querySelectorAll('.badlength')[0].innerText = '';
+      input.style.borderColor = "";
     }
   }
   else if (input.id === 'exp-date-month' || input.id === 'exp-date-year') {
     expectedLen = 2;
     if (len !== expectedLen) {
-      document.querySelectorAll('.badlength')[1].classList.remove('hide');
+      // document.querySelectorAll('.badlength')[1].classList.remove('hide');
+      document.querySelectorAll('.badlength')[1].style.display = 'block';
+      document.querySelectorAll('.badlength')[1].innerText = 'Input too short..';
       input.style.borderColor = "hsl(0, 100%, 66%)";
       i++;
+    }
+    else{
+      document.querySelectorAll('.badlength')[1].style.display = 'none';
+      document.querySelectorAll('.badlength')[1].innerText = '';
+      input.style.borderColor = "";
     }
   }
   else {
     expectedLen = 3;
     if (len !== expectedLen) {
-      document.querySelectorAll('.badlength')[2].classList.remove('hide');
+      document.querySelectorAll('.badlength')[2].style.display = 'block';
+      document.querySelectorAll('.badlength')[2].innerText = 'Input too short..';
       input.style.borderColor = "hsl(0, 100%, 66%)";
       i++;
+    }
+    else{
+      document.querySelectorAll('.badlength')[2].style.display = 'none';
+      document.querySelectorAll('.badlength')[2].innerText = '';
+      input.style.borderColor = "";
     }
   }
 }
@@ -86,9 +107,14 @@ const checkFormats = (input) => {
   }
 
   if (!regex.test(input.value)) {
-    input.nextElementSibling.nextElementSibling.classList.remove('hide');
+    input.nextElementSibling.style.display = 'block';
+    input.nextElementSibling.innerText = "Can't be blank";
     input.style.borderColor = "hsl(0, 100%, 66%)";
     i++;
+  }
+  else{
+    input.nextElementSibling.style.display = 'none';
+    input.style.borderColor = "none";
   }
 
 }
