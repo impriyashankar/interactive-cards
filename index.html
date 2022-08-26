@@ -48,7 +48,7 @@
         <form action="#" id="card-info-form">
           <div class="cardholder-name">
             <label for="name">CARDHOLDER NAME</label>
-            <input type="text" id="name"  placeholder="eg. Jane Appleseed">
+            <input type="text" id="person"  placeholder="eg. Jane Appleseed">
             <p class="error blank hide">Can't be blank</p>
           </div>
           <div class="card-number">
@@ -56,17 +56,17 @@
             <input type="text" id="number" class="num-field" placeholder="eg. 1234 0000 0000 0000">
             <p class="error blank hide">Can't be blank</p>
             <p class="error badformat hide">Incorrect format, numbers only</p>
+            <p class="error badlength hide">Input too short..</p>
           </div>
           <div class="exp-date-cvv">
             <div class="exp-date">
               <label for="exp-date">EXP. DATE(MM/YY)</label>
               <div class="date-and-cvv">
                 <input type="text" id="exp-date-month" class="num-field" placeholder="MM" maxlength="2">
-                <!-- <p class="error blank">Can't be blank</p>
-            <p class="error badformat">Incorrect format, numbers only</p> -->
                 <input type="text" id="exp-date-year" class="num-field" placeholder="YY" maxlength="2">
                 <p class="error blank hide">Can't be blank</p>
                 <p class="error badformat hide">Incorrect format, numbers only</p>
+                <p class="error badlength hide">Input too short..</p>
               </div>
             </div>
             <div class="cvv">
@@ -74,6 +74,7 @@
               <input type="text" id="cvv" class="num-field" placeholder="eg. 123" maxlength="3">
               <p class="error blank hide">Can't be blank</p>
               <p class="error badformat hide">Incorrect format, numbers only</p>
+              <p class="error badlength hide">Input too short..</p>
             </div>
           </div>
           <button type="submit">Confirm</button>

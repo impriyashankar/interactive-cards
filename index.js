@@ -2,7 +2,7 @@
 
 //Update card details on empty card image in real-time
 
-const cardholderName = document.querySelector('#name');
+const cardholderName = document.querySelector('#person');
 const cardNumber = document.querySelector('#number');
 const cardExpMonth = document.querySelector('#exp-date-month');
 const cardExpYear = document.querySelector('#exp-date-year');
@@ -22,38 +22,73 @@ const allNumInputs = document.querySelectorAll('.num-field');
 const formHolder = document.querySelector('.form-wrapper');
 const thankyouDisplay = document.querySelector('.completed-state');
 
-let i=0, j=0;
+let i = 0, j = 0;
 
 const checkInputs = (inputs) => {
-  // let i = 0;
   inputs.forEach((input) => {
     if (input.value === "") {
       input.nextElementSibling.classList.remove('hide');
-      // console.log("correct");
+      // document.querySelectorAll('.error.blank')[1].classList.remove('hide');
+
       i++;
+      if(i > 0) {
+        input.style.borderColor = "hsl(0, 100%, 66%)";
+      }
+      else
+      input.style.borderColor = "";
     }
     else if (input.classList.contains('num-field')) {
-      console.log("non empty ip");
-      checkFormats(input);
+      checkLength(input);
+      if (i === 0) {
+        checkFormats(input);
+      }
     }
   }
   );
+}
 
+const checkLength = (input) => {
+  const len = input.value.length;
+  let expectedLen = 0;
+  if (input.id === 'number') {
+    expectedLen = 19;
+    if (len !== expectedLen) {
+      document.querySelectorAll('.badlength')[0].classList.remove('hide');
+      input.style.borderColor = "hsl(0, 100%, 66%)";
+      i++;
+    }
+  }
+  else if (input.id === 'exp-date-month' || input.id === 'exp-date-year') {
+    expectedLen = 2;
+    if (len !== expectedLen) {
+      document.querySelectorAll('.badlength')[1].classList.remove('hide');
+      input.style.borderColor = "hsl(0, 100%, 66%)";
+      i++;
+    }
+  }
+  else {
+    expectedLen = 3;
+    if (len !== expectedLen) {
+      document.querySelectorAll('.badlength')[2].classList.remove('hide');
+      input.style.borderColor = "hsl(0, 100%, 66%)";
+      i++;
+    }
+  }
 }
 
 const checkFormats = (input) => {
-  // const regex = /^\d{4}\s\d{4}\s\d{4}\s\d{4}$/;//if num then this regex, else give diff regex
-  // let i = 0;
-  const regex = /^\d+$/;
-  console.log("enter format check");
+  let regex = /^$/;
+  if (input.value.length > 3) {
+    regex = /^\d{4}\s\d{4}\s\d{4}\s\d{4}$/;
+  }
+  else {
+    regex = /^\d+$/;
+  }
 
   if (!regex.test(input.value)) {
-
     input.nextElementSibling.nextElementSibling.classList.remove('hide');
-    j++;
-  }
-  else{
-    console.log("format ok");
+    input.style.borderColor = "hsl(0, 100%, 66%)";
+    i++;
   }
 
 }
@@ -84,34 +119,28 @@ cardCVV.addEventListener('keyup', () => {
 });
 
 formUser.addEventListener('submit', (event) => {
-  console.log("hello");
-
   const allInputsAreFilled = checkInputs(arrayOfAllInputs);
 
 
-  if (i === 0 && j===0) {
-    // const allFormatsAreOk = checkFormats(arrayOfNumberFields);
-    // if (allFormatsAreOk) {
-
-
-       loadThankYouContent(); //Replace HTML of form-container part of the page.
-      // console.log("good");
-    // }
+  if (i === 0/* && j === 0*/) {
+    loadThankYouContent();
   }
   else {
-    // event.preventDefault();
-    // console.log("something wrong");
+    i = 0;
 
+    // const errorTags = document.querySelectorAll('.error');
+    // for (const errorTag of errorTags) {
+    //   errorTag.classList.add('hide');
+    // }
+
+    // for (const inputBox of allInputs) {
+    //   inputBox.style.borderColor = "hsl(278, 68%, 11%)";
+    // }
   }
-
 });
 
 document.querySelector('#continue').addEventListener('click', () => {
-  formHolder.classList.remove('hide');
-  thankyouDisplay.classList.add('hide');
+  // formHolder.classList.remove('hide');
+  // thankyouDisplay.classList.add('hide');
   window.location.reload();
-  // document.querySelector('#card-info-form').reset();
-  // document.querySelector('.card-front .container').innerText = '';
-  // document.querySelector('.card-back').innerText = '';
-
 });
