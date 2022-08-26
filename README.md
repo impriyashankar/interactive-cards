@@ -33,9 +33,7 @@ Users should be able to:
 
 ![Screenshot 2022-08-26 at 1 11 35 PM](https://user-images.githubusercontent.com/20161096/186892275-e3ab5a13-f13c-45a4-bdd2-c36bf6aec2f8.png)
 ![Screenshot 2022-08-26 at 1 13 00 PM](https://user-images.githubusercontent.com/20161096/186892294-1dfc958f-e2df-4844-a79b-706b52cf5558.png)
-![Screenshot 2022-08-26 at 1 17 36 PM](https://user-images.githubusercontent.com/20161096/186892297-368d5b08-68cc-4bda-9d37-2a6260a4bf72.png)
-
-
+![Screenshot 2022-08-26 at 7 36 18 PM](https://user-images.githubusercontent.com/20161096/186960953-b96e1e82-c540-42ec-827d-1baeb27bb704.png)
 
 
 ## My process
