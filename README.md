@@ -11,7 +11,7 @@ The page aims to simulate most features of interaction with a normal credit card
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
-- * [Setup](#setup)
+- [Setup](#setup)
 - [Acknowledgments](#acknowledgments)
 
 ## Overview
@@ -31,7 +31,10 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![Screenshot 2022-08-26 at 1 11 35 PM](https://user-images.githubusercontent.com/20161096/186892275-e3ab5a13-f13c-45a4-bdd2-c36bf6aec2f8.png)
+![Screenshot 2022-08-26 at 1 13 00 PM](https://user-images.githubusercontent.com/20161096/186892294-1dfc958f-e2df-4844-a79b-706b52cf5558.png)
+![Screenshot 2022-08-26 at 1 17 36 PM](https://user-images.githubusercontent.com/20161096/186892297-368d5b08-68cc-4bda-9d37-2a6260a4bf72.png)
+
 
 
 
