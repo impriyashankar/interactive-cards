@@ -149,7 +149,7 @@ cardCVV.addEventListener('keyup', () => {
 
 formUser.addEventListener('submit', (event) => {
   const allInputsAreFilled = checkInputs(arrayOfAllInputs);
-
+  event.preventDefault();
 
   if (i === 0/* && j === 0*/) {
     loadThankYouContent();
